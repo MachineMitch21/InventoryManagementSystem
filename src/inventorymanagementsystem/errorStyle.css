@@ -1,0 +1,29 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 2, 2018, 2:39:53 PM
+    Author     : mitch
+*/
+
+.root {
+    -fx-background-color: lightgrey;
+}
+
+#lblErrorHeader {
+    -fx-text-fill: red;
+    -fx-font: bold 24px "Serif";
+    -fx-alignment: center;
+}
+
+#lblErrorMsg {
+    -fx-border-width: 1 0 0 0;
+    -fx-border-color: grey;
+    -fx-border-radius: 3 3 3 3;
+    -fx-text-fill: blue;
+    -fx-font: 14px "Mono";
+    -fx-alignment: center;
+    -fx-background-color: lightgrey;
+}

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<fx:root fx:id="bRoot" type="javafx.scene.layout.BorderPane" xmlns:fx="http://javafx.com/fxml">
+    <top>
+        <GridPane fx:id="headerGrid" prefWidth="${bRoot.width}" prefHeight="${bRoot.height * 0.1}" hgap="10" vgap="10">
+            <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
+            <columnConstraints>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="33.3"/>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="33.3"/>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="33.3"/>
+            </columnConstraints>            
+            <Label styleClass="lblWorkWindowHeader" fx:id="lblHeader" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <text>PartsTemplate</text>
+            </Label>
+            <RadioButton fx:id="btnInHouse" onAction="#toggleInHouse" text="In-House" GridPane.columnIndex="1" GridPane.rowIndex="0"></RadioButton>
+            <RadioButton fx:id="btnOutsourced" onAction="#toggleOutsourced" text="Outsourced" GridPane.columnIndex="2" GridPane.rowIndex="0"></RadioButton>
+        </GridPane>
+    </top>
+    <center>
+        <GridPane fx:id="inputGrid" styleClass="centeredGrid" prefWidth="${bRoot.width * 0.8}" prefHeight="${bRoot.height * 0.75}" hgap="10" vgap="10">
+            <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
+            <columnConstraints>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="33.3"/>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="33.3"/>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="33.3"/>
+            </columnConstraints>    
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="0"><text>ID</text></Label>
+            <TextField fx:id="txtID" GridPane.columnIndex="1" GridPane.rowIndex="0"></TextField>
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="1"><text>Name</text></Label>
+            <TextField fx:id="txtName" GridPane.columnIndex="1" GridPane.rowIndex="1"></TextField>
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="2"><text>Inv</text></Label>
+            <TextField fx:id="txtInv" GridPane.columnIndex="1" GridPane.rowIndex="2"></TextField>
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="3"><text>Price/Cost</text></Label>
+            <TextField fx:id="txtPriceCost" GridPane.columnIndex="1" GridPane.rowIndex="3"></TextField>
+            <Label GridPane.columnIndex="0" GridPane.rowIndex="4"><text>Max</text></Label>
+            <GridPane GridPane.columnIndex="1" GridPane.rowIndex="4"> 
+                <columnConstraints>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="66.6"/>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="33.3"/>
+                </columnConstraints>  
+                
+                <TextField fx:id="txtMax" GridPane.columnIndex="0" GridPane.rowIndex="0"></TextField>
+                <Label GridPane.columnIndex="1" GridPane.rowIndex="0"><text>Min</text></Label>
+            </GridPane>  
+            <TextField fx:id="txtMin" GridPane.columnIndex="2" GridPane.rowIndex="4"></TextField> 
+            <Label fx:id="lblCNameMachID" GridPane.columnIndex="0" GridPane.rowIndex="5"><text>Machine ID</text></Label>  
+            <TextField fx:id="txtCNameMachID" GridPane.columnIndex="1" GridPane.rowIndex="5"></TextField>                   
+        </GridPane>
+    </center>
+    <bottom>
+        <GridPane>
+            <columnConstraints>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="25.0"/>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="25.0"/>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="25.0"/>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="25.0"/>
+            </columnConstraints>   
+            <BorderPane.margin>
+                <Insets bottom="25.0"/>
+            </BorderPane.margin> 
+            <Button GridPane.columnIndex="2" GridPane.rowIndex="0" text="Save" onAction="#clickedSave"/>
+            <Button GridPane.columnIndex="3" GridPane.rowIndex="0" text="Cancel" onAction="#clickedCancel"/>         
+        </GridPane>
+    </bottom>
+</fx:root>

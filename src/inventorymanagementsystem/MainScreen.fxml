@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.stage.Screen?>
+<?import javafx.geometry.Insets?>
+<?import java.net.*?>
+<?import javafx.scene.control.cell.*?>  
+
+
+
+<BorderPane fx:id="bRoot" id="bRoot" prefHeight="500" prefWidth="1050" xmlns:fx="http://javafx.com/fxml/1" fx:controller="inventorymanagementsystem.MainScreenController">
+    <fx:define>
+        <Screen fx:factory="getPrimary" fx:id="screen"/>
+    </fx:define>   
+    <top>
+        <Label prefHeight="${bRoot.height * 0.25}" prefWidth="${bRoot.width}" fx:id="lblMainHeader" id="lblMainHeader">
+            <BorderPane.margin>
+                <Insets left="20.0"/>
+            </BorderPane.margin>
+            <text>Inventory Management System</text>
+        </Label>
+    </top>
+    <left>
+        <BorderPane prefHeight="${bRoot.height * 0.5}" prefWidth="${bRoot.width * 0.5}" styleClass="inventorySection" fx:id="partsSection">
+            <center>
+                <BorderPane prefHeight="${partsSection.height * 0.9}" prefWidth="${partsSection.width * 0.9}" styleClass="inventorySectionContent" fx:id="partsContent">
+                    <BorderPane.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                    </BorderPane.margin>
+                    <center>
+                        <GridPane prefWidth="${partsContent.width * 0.9}" prefHeight="${partsContent.height * 0.9}" hgap="10" vgap="10">
+                            <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="ALWAYS" percentWidth="25.0"/>
+                                <ColumnConstraints hgrow="ALWAYS" percentWidth="25.0"/>
+                                <ColumnConstraints hgrow="ALWAYS" percentWidth="25.0"/>
+                                <ColumnConstraints hgrow="ALWAYS" percentWidth="25.0"/>
+                            </columnConstraints>
+                            <Text styleClass="lblMainScreenTable" text="Parts" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2"/>
+                            <Button fx:id="btnPartSearch" text="Search" GridPane.columnIndex="2" GridPane.rowIndex="0"/> 
+                            <TextField fx:id="txtPartSearch" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+                            
+                            <TableView id="tblParts" fx:id="tblParts" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="4">
+                                <columns>
+                                    <TableColumn fx:id="tblColPartID"       text="Part ID"              prefWidth="${tblParts.width * 0.125}" resizable="false">
+                                        <cellValueFactory>
+                                            <PropertyValueFactory property="partID"/>
+                                        </cellValueFactory>
+                                    </TableColumn> 
+                                    <TableColumn fx:id="tblColPartName"     text="Part Name"            prefWidth="${tblParts.width * 0.275}" resizable="false">
+                                        <cellValueFactory>
+                                            <PropertyValueFactory property="name"/>
+                                        </cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn fx:id="tblColPartInvLevel" text="Inventory Level"      prefWidth="${tblParts.width * 0.225}" resizable="false">
+                                        <cellValueFactory>
+                                            <PropertyValueFactory property="inStock"/>
+                                        </cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn fx:id="tblColPartPrice"    text="Price/Cost per Unit"  prefWidth="${tblParts.width * 0.375}" resizable="false">
+                                        <cellValueFactory>
+                                            <PropertyValueFactory property="price"/>
+                                        </cellValueFactory>
+                                    </TableColumn>                                   
+                                </columns>
+                            </TableView>
+                            <Button GridPane.columnIndex="1" GridPane.rowIndex="3" text="Add"       onAction="#openAddPartDialog"   />
+                            <Button GridPane.columnIndex="2" GridPane.rowIndex="3" text="Delete"    onAction="#deletePart"          />
+                            <Button GridPane.columnIndex="3" GridPane.rowIndex="3" text="Modify"    onAction="#openModifyPartDialog"/>
+                        </GridPane>
+                    </center>
+                </BorderPane>
+            </center>
+        </BorderPane>
+    </left>
+    <right>
+        <BorderPane prefHeight="${bRoot.height * 0.5}" prefWidth="${bRoot.width * 0.5}" styleClass="inventorySection" fx:id="productsSection">
+            <center>
+                <BorderPane prefHeight="${productsSection.height * 0.9}" prefWidth="${productsSection.width * 0.9}" styleClass="inventorySectionContent" fx:id="productsContent">
+                    <BorderPane.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                    </BorderPane.margin>
+                    
+                    <center>
+                        <GridPane prefWidth="${productsContent.width * 0.9}" prefHeight="${productsContent.height * 0.9}" hgap="10" vgap="10">
+                            <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="ALWAYS" percentWidth="25.0"/>
+                                <ColumnConstraints hgrow="ALWAYS" percentWidth="25.0"/>
+                                <ColumnConstraints hgrow="ALWAYS" percentWidth="25.0"/>
+                                <ColumnConstraints hgrow="ALWAYS" percentWidth="25.0"/>
+                            </columnConstraints>
+                            <Text styleClass="lblMainScreenTable" text="Products" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2"/>
+                            <Button fx:id="btnProductSearch" text="Search" GridPane.columnIndex="2" GridPane.rowIndex="0"/> 
+                            <TextField fx:id="txtProductSearch" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+                            
+                            <TableView fx:id="tblProducts" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="4">
+                                <columns>
+                                    <TableColumn fx:id="tblColProductID"        text="Product ID"      prefWidth="${tblProducts.width * 0.20 }" resizable="false">
+                                        <cellValueFactory>
+                                            <PropertyValueFactory property="productID"/>
+                                        </cellValueFactory>
+                                    </TableColumn> 
+                                    <TableColumn fx:id="tblColProductName"      text="Product Name"    prefWidth="${tblProducts.width * 0.275}" resizable="false">
+                                        <cellValueFactory>
+                                            <PropertyValueFactory property="name"/>
+                                        </cellValueFactory>                                       
+                                    </TableColumn>
+                                    <TableColumn fx:id="tblColProductInvLevel"  text="Inventory Level" prefWidth="${tblProducts.width * 0.225}" resizable="false">
+                                        <cellValueFactory>
+                                            <PropertyValueFactory property="inStock"/>
+                                        </cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn fx:id="tblColProductPrice"     text="Price per Unit"  prefWidth="${tblProducts.width * 0.30 }" resizable="false">
+                                        <cellValueFactory>
+                                            <PropertyValueFactory property="price"/>
+                                        </cellValueFactory>
+                                    </TableColumn>                                   
+                                </columns>  
+                            </TableView>
+                            <Button GridPane.columnIndex="1" GridPane.rowIndex="3" text="Add"       onAction="#openAddProductDialog"    />
+                            <Button GridPane.columnIndex="2" GridPane.rowIndex="3" text="Delete"    onAction="#deleteProduct"           />
+                            <Button GridPane.columnIndex="3" GridPane.rowIndex="3" text="Modify"    onAction="#openModifyProductDialog" />
+                        </GridPane>
+                    </center>
+                </BorderPane>
+            </center>
+        </BorderPane>
+    </right>
+    <bottom>
+        <BorderPane>
+            <right>
+                <Button prefHeight="30" prefWidth="90" fx:id="exitBtn" onAction="#exitApplication" text="Exit">
+                    <BorderPane.margin>
+                        <Insets right="50.0" bottom="10.0"/>
+                    </BorderPane.margin>
+                </Button>
+            </right>
+        </BorderPane>
+    </bottom>
+</BorderPane>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.*?>
+
+<fx:root id="bRoot" fx:id="bRoot" type="javafx.scene.layout.BorderPane" xmlns:fx="http://javafx.com/fxml/1">
+    <top>
+        <GridPane prefWidth="${bRoot.width}" prefHeight="${bRoot.height * 0.2}">
+            <padding><Insets top="5" right="5" bottom="5" left="5"/></padding>
+            <columnConstraints>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="100"/>
+            </columnConstraints>   
+            <ImageView fitHeight="40" fitWidth="40" fx:id="errorImgView" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <image>
+                    <Image url="res/error.png" backgroundLoading="true"/>
+                </image>
+            </ImageView>
+        </GridPane>
+    </top>
+    <center>
+        <Label id="lblErrorMsg" fx:id="lblErrorMsg" wrapText="true" prefWidth="${bRoot.width * 0.9}" prefHeight="${bRoot.height * 0.8}" />
+    </center>
+</fx:root>
